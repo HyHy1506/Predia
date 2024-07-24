@@ -139,3 +139,14 @@
     background-color:rgb(179, 226, 167) ;
     color: rgb(0, 81, 63);
 }
+#enterInfoID{
+    padding: 20px;
+    border-radius: 2%;
+    margin: 10px 0 10px 0;
+    min-height: 80vh;
+    color: white;
+    text-align: center;
+    /* padding:100px 20px 100px 20px; */
+    background-color: rgb(128, 185, 173);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
