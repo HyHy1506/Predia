@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock %}
+
+{% block body %}
+<nav class="navbar navbar-expand-md  navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="/">
+            <h1>PreDia</h1>
+        </a>
+        <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+            <div class="navbar-toggler-icon">
+            </div>
+        </button>
+        <div class="collapse navbar-collapse  justify-content-end" id="nav">
+            <ul class="navbar-nav">
+                <li class="nav-item ">
+                    <a class="nav-link " href="/">Trang chủ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="/predict">Dự đoán</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <div class="row  g-1">
+        {% if isPredicted %}
+        <div class="col-12">
+            <div id="resultID" class="book d-flex justify-content-center align-items-center  result">
+                <div class="card w-75 h-75 p-2">
+                    <div class="card-body">
+                        <h2 class="card-title">Kết quả</h2>
+                        <div class="card-text h-75 textCard p-3">
+                            Nồng độ glucose: {{ glucose_level }} (mg/dL) <br>
+                            Chỉ số Insulin: {{ insulin }} (µU/ml) <br>
+                            Chỉ số BMI: {{ bmi }} <br>
+                            Tuổi: {{ age }} <br>
+                            <h5>
+                                {{ resultFinal }}
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <form action="/predict">
+                            <button class="btn" type="submit">Quay về</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% else %}
+
+        <div class="col-12">
+            <div class="book d-flex justify-content-center align-items-center enterInfo">
+                <div class="row w-75">
+                    <div class="col-12">
+                        <form action="/predict" method="POST"  id="formEnterInfoID">
+                            <div class="text-start mb-2">
+                                Sử dụng phương pháp Nghiệm pháp dung nạp glucose đường uống để có chỉ số về Nồng độ glucose (mg/dL)
+                            </div>
+                            <div class="form-floating mb-2">
+                                <input type="number" id="so1" name="Glucose Level" class="form-control"
+                                    required="required" placeholder="nothing">
+                                <label for="so1" class="form-label">Nồng độ glucose</label>
+                               
+                            </div>
+                            <div class="text-start mb-2">
+                                Xét nghiệm Insulin tiến hành trên huyết thanh để có chỉ số về Insulin (µU/ml)
+                            </div>
+                            <div class="form-floating mb-2">
+                                <input id="so2" type="number" name="Insulin" placeholder="Insulin" required="required"
+                                    class="form-control">
+                                <label for="so2" class="form-label">Chỉ số Insulin</label>
+                             
+                            </div>
+                            <div class="text-start mb-2">
+                                Tính chỉ cố BMI (cân nặng tính bằng kg/(chiều cao tính bằng m)^2)
+                            </div>
+                            <div class="form-floating mb-2">
+                                <input id="so3" type="number" name="BMI" placeholder="vd: 21" required="required"
+                                    class="form-control">
+                                <label for="so3" class="form-label">Chỉ số BMI</label>
+                              
+                            </div>
+                            <div class="text-start mb-2">
+                                Tuổi của bạn
+                            </div>
+                            <div class="form-floating mb-2">
+                                <input id="so4" type="number" name="Age" placeholder="vd : 18" required="required"
+                                    class="form-control">
+                                <label for="so4" class="form-label">Tuổi</label>
+                              
+                            </div>
+
+                            <a href="#resultID">
+                                <button class="btn  mt-5" type="submit">Kiem tra</button>
+                            </a>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        {% endif %}
+
+    </div>
+
+
+</div>
+
+
+
+<script src="{{ url_for('static',filename='js/predict.js') }}"></script>
+
+{% endblock %}

@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+{% block head %}
+{% endblock %}
+
+{% block body %}
+    <nav class="navbar navbar-expand-md  navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <h1>PreDia</h1>
+            </a>
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#nav">
+                <div class="navbar-toggler-icon">
+                </div>
+            </button>
+            <div class="collapse navbar-collapse  justify-content-end" id="nav">
+                <ul class="navbar-nav">
+                    <li class="nav-item ">
+                        <a class="nav-link active" href="/">Trang chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/predict">Dự đoán</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row  g-1">
+            <div class="col-12">
+                <div class="book align-content-center intro">
+                    <div class="row-cols-1 ">
+                        <div class="col">
+                            <h1>Kiểm tra về bệnh tiểu đường</h1>
+                        </div>
+                        <div class="col d-flex justify-content-center pe-4 ps-4 pe-md-0 ps-md-0">
+                            <div class="text-intro ">
+                                <div>
+                                    <span>Phát hiện sớm tiểu đường: Có thể giúp phát hiện 
+                                        sớm các dấu hiệu tiểu đường ở những người có nguy 
+                                        cơ cao. Điều này rất quan trọng vì phát hiện sớm có 
+                                        thể giúp bắt đầu điều trị và thay đổi lối sống kịp 
+                                        thời để ngăn chặn hoặc làm chậm tiến triển của bệnh.
+                                    </span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="book align-content-center general">
+                    <div class="row w-100 h-100 g-0">
+                       <div class="col-md-6 d-flex  align-items-center justify-content-center">
+                        <div class="w-75">
+                           <h5><b>Tiểu đường</b></h5> là suy giảm bài tiết insulin và nồng độ kháng insulin ngoại vi thay đổi dẫn đến tăng đường huyết. Triệu chứng sớm liên quan tới tăng glucose máu và bao gồm uống nhiều, khát nhiều, tiểu nhiều và nhìn mờ. Biến chứng muộn gồm bệnh mạch máu, bệnh thần kinh ngoại vi, bệnh thận và dễ nhiễm khuẩn.
+                        </div>
+                       </div>
+                       <div class="col ">
+                        <img class="imgGeneral" src="{{ url_for('static',filename='img/stephen-andrews-GwgFPDXiSIs-unsplash.jpg') }}" alt="">
+                       </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="book d-flex trynow justify-content-center align-items-center ">
+                    <div class="row w-100 h-100 align-items-center">
+                        <div id="partID" class=" col-md-6 col-12 d-flex align-items-center justify-content-center">
+                            <div class="card  p-2">
+                                <div class="card-body">
+                                    <h2 class="card-title">Dự đoán</h2>
+                                    <div class="card-text h-75 textCard p-3">
+                                        Bạn có khả năng ...... <br>
+                                        Bạn nằm trong nhóm ..... <br>
+                                        Tỉ lệ mắc bệnh ..... <br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" col d-flex align-items-md-center justify-content-center">
+                            <a  href="/predict">
+                                <button class="btn " > 
+                                    Kiểm tra ngay
+                                </button>
+                             </a>
+                        </div>
+                    </div>
+                   <!-- <div class="row w-100 h-100 justify-content-center d-flex">
+                    <div class="col-md-6 p-0 col-12 d-flex align-items-center justify-content-center">
+                        <div class="card w-75 h-75 p-2">
+                            <div class="card-body">
+                                <h2 class="card-title">Dự đoán</h2>
+                                <div class="card-text h-75 textCard p-3">
+                                    Bạn có khả năng ...... <br>
+                                    Bạn nằm trong nhóm ..... <br>
+                                    Tỉ lệ mắc bệnh ..... <br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <a  href="/predict">
+                            <button class="btn " > 
+                                Kiểm tra ngay
+                            </button>
+                         </a>
+                    </div>
+                   </div> -->
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="book aboutUs ">
+                    <img class="imgAboutUs w-100 h-100 " src="{{ url_for('static',filename='img/team.jpg') }}" alt="">
+                    <div class="textAboutUs w-100">
+                        <div class="row ">
+                            <div class="col-1 col-md-2"></div>
+                            <div class="col-md-8 col-10">
+
+                        
+                        <h1>Về chúng tôi</h1>
+                        <p>Chúng tôi tự hào là đơn vị tiên phong trong việc 
+                            ứng dụng trí tuệ nhân tạo và công nghệ học máy 
+                            để cải thiện sức khỏe cộng đồng. Với mục tiêu 
+                            giúp mọi người sống khỏe mạnh hơn, chúng tôi đã 
+                            phát triển các mô hình dự đoán y tế tiên tiến, 
+                            đặc biệt là dự đoán nguy cơ mắc tiểu đường, dựa 
+                            trên dữ liệu cá nhân hóa. Hãy cùng chúng
+                               tôi xây dựng một cộng đồng khỏe mạnh và hạnh 
+                               phúc hơn!</p>
+                            </div>
+                            <div class="col-1 col-md-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+        
+    </div>
+    
+   
+
+{% endblock %}
