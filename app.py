@@ -15,20 +15,29 @@ def index():
 @app.route("/predict/",methods=['GET','POST'])
 def predict():
     if(request.method=='POST'):
-        float_features = [float(x) for x in request.form.values()]
-        final_features = [np.array(float_features)]
-        scaled_features = sc.transform(final_features)
-        prediction = model.predict(scaled_features)
-        probability = model.predict_proba(scaled_features)
-        probability_of_diabetes = probability[0][1] * 100
+       
+        # scaled_features = sc.transform(final_features)
+        # prediction = model.predict(scaled_features)
+        # probability = model.predict_proba(scaled_features)
+        # probability_of_diabetes = probability[0][1] * 100
         #-------create string
-        glucose_level = float(request.form['Glucose Level'])
-        insulin = float(request.form['Insulin'])
-        bmi = float(request.form['BMI'])
-        age = float(request.form['Age'])
-
+        age = float(request.form['age'])
+        hypertension = float(request.form['hypertension'])
+        bmi = float(request.form['bmi'])
+        HbA1c_level = float(request.form['HbA1c_level'])
+        blood_glucose_level = float(request.form['blood_glucose_level'])
+        print(hypertension)
+        features = [age, hypertension, bmi, HbA1c_level, blood_glucose_level]
+        # chuyen list sang numpy.array
+        features_array = np.array(features).reshape(1, -1)
+        # chuan hoa
+        features_array_scaled=sc.transform(features_array)
+        # tinh phan tram 
+        probability = model.predict_proba(features_array_scaled)
+        probability_of_diabetes = probability[0][1] * 100
         output = f"Bạn có khả năng: {probability_of_diabetes:.2f}% mắc bệnh tiểu đường"
-        return render_template("predict.html",isPredicted=True, resultFinal=output,glucose_level=glucose_level,insulin=insulin,bmi=bmi,age=age)
+       
+        return render_template("predict.html",isPredicted=True, resultFinal=output,blood_glucose_level=blood_glucose_level,HbA1c_level=HbA1c_level,hypertension=hypertension,bmi=bmi,age=age)
     else:
         return render_template("predict.html",isPredicted=False)
 if __name__=="__main__":

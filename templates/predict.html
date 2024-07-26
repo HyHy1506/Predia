@@ -35,10 +35,11 @@
                     <div class="card-body">
                         <h2 class="card-title">Kết quả</h2>
                         <div class="card-text h-75 textCard p-3">
-                            Nồng độ glucose: {{ glucose_level }} (mg/dL) <br>
-                            Chỉ số Insulin: {{ insulin }} (µU/ml) <br>
-                            Chỉ số BMI: {{ bmi }} <br>
                             Tuổi: {{ age }} <br>
+                            hypertension: {{ hypertension }} <br>
+                            Chỉ số BMI: {{ bmi }} <br>
+                            HbA1c_level:{{ HbA1c_level }} <br>
+                            blood glucose level: {{ blood_glucose_level }}  <br>
                             <h5>
                                 {{ resultFinal }}
                             </h5>
@@ -61,42 +62,52 @@
                     <div class="col-12">
                         <form action="/predict" method="POST"  id="formEnterInfoID">
                             <div class="text-start mb-2">
-                                Sử dụng phương pháp Nghiệm pháp dung nạp glucose đường uống để có chỉ số về Nồng độ glucose (mg/dL)
+                                Tuổi của bạn
                             </div>
                             <div class="form-floating mb-2">
-                                <input type="number" id="so1" name="Glucose Level" class="form-control"
+                                <input type="number" id="so1" name="age" class="form-control"
                                     required="required" placeholder="nothing">
-                                <label for="so1" class="form-label">Nồng độ glucose</label>
+                                <label for="so1" class="form-label">Tuổi</label>
                                
                             </div>
                             <div class="text-start mb-2">
-                                Xét nghiệm Insulin tiến hành trên huyết thanh để có chỉ số về Insulin (µU/ml)
+                                Huyết áp cao (Hypertension)
                             </div>
-                            <div class="form-floating mb-2">
-                                <input id="so2" type="number" name="Insulin" placeholder="Insulin" required="required"
-                                    class="form-control">
-                                <label for="so2" class="form-label">Chỉ số Insulin</label>
-                             
+                            <div class=" mb-2">
+                                <select id="so2" name="hypertension" class="form-control" required="required">
+                                    <option value="" disabled selected>Chọn tình trạng huyết áp</option>
+                                    <option value="0">Không bị huyết áp cao</option>
+                                    <option value="1">Có huyết áp cao</option>
+                                </select>
+                                
                             </div>
                             <div class="text-start mb-2">
                                 Tính chỉ cố BMI (cân nặng tính bằng kg/(chiều cao tính bằng m)^2)
                             </div>
                             <div class="form-floating mb-2">
-                                <input id="so3" type="number" name="BMI" placeholder="vd: 21" required="required"
+                                <input id="so3" type="number" name="bmi" step="0.01" placeholder="vd: 21" required="required"
                                     class="form-control">
                                 <label for="so3" class="form-label">Chỉ số BMI</label>
                               
                             </div>
                             <div class="text-start mb-2">
-                                Tuổi của bạn
+                                Xét nghiệm HbA1c cho ra chỉ số HbA1c (%)
                             </div>
                             <div class="form-floating mb-2">
-                                <input id="so4" type="number" name="Age" placeholder="vd : 18" required="required"
+                                <input id="so4" type="number" name="HbA1c_level" step="0.01" placeholder="vd : 18" required="required"
                                     class="form-control">
-                                <label for="so4" class="form-label">Tuổi</label>
+                                <label for="so4" class="form-label">Chỉ số HbA1c</label>
                               
                             </div>
-
+                            <div class="text-start mb-2">
+                                Sử dụng phương pháp Nghiệm pháp dung nạp glucose đường uống để có chỉ số về nồng độ glucose (mg/dL)
+                            </div>
+                            <div class="form-floating mb-2">
+                                <input id="so5" type="number" name="blood_glucose_level" placeholder="vd : 18" required="required"
+                                    class="form-control">
+                                <label for="so5" class="form-label">chỉ số đo lượng glucose (đường) trong máu</label>
+                              
+                            </div>
                             <a href="#resultID">
                                 <button class="btn  mt-5" type="submit">Kiem tra</button>
                             </a>
