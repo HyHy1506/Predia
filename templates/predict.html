@@ -29,11 +29,58 @@
 <div class="container">
     <div class="row  g-1">
         {% if isPredicted %}
-        <div class="col-12">
+       <div class="col-1 " ></div>
+        <div class="col-12 col-md-10">
             <div id="resultID" class="book d-flex justify-content-center align-items-center  result">
-                <div class="card w-75 h-75 p-2">
+                <div class="card p-2">
                     <div class="card-body">
                         <h2 class="card-title">Kết quả</h2>
+                        {% if isListPatient %}
+                        <div class="card-text h-75 textCard p-3">
+                           <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Tuổi</th>
+                                        <th>Huyết áp cao</th>
+                                        <th>BMI</th>
+                                        <th>HbA1c</th>
+                                        <th>Nồng độ glucose</th>
+
+                                        <th>Kết quả</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for data in data_array %}
+                                    <tr>
+                                        <td>
+                                            {{ data[0] }}
+                                        </td>
+                                        <td>
+                                            {{ data[1] }}
+
+                                        </td>
+                                        <td>
+                                            {{ data[2] }}
+
+                                        </td>
+                                        <td>
+                                            {{ data[3] }}
+
+                                        </td>
+                                        <td>
+                                            {{ data[4] }}
+
+                                        </td>
+                                        <td>
+                                            {{ (data[5] * 100) | round(2) }}%
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                           </table>
+                        </div>
+                        {% else %}
                         <div class="card-text h-75 textCard p-3">
                             Tuổi: {{ age }} <br>
                             hypertension: {{ hypertension }} <br>
@@ -44,6 +91,8 @@
                                 {{ resultFinal }}
                             </h5>
                         </div>
+                        {% endif %}
+
                     </div>
                     <div class="card-footer">
                         <form action="/predict">
@@ -53,6 +102,7 @@
                 </div>
             </div>
         </div>
+        <div class="col-1"></div>
 
         {% else %}
 
@@ -60,7 +110,7 @@
             <div id="enterInfoID" class=" d-flex justify-content-center align-items-center enterInfo">
                 <div class="row ">
                     <div class="col-12">
-                        <form action="/predict" method="POST"  id="formEnterInfoID">
+                        <form action="/predict" method="POST"  id="formEnterInfoID" enctype="multipart/form-data">
                             <div class="text-start mb-2">
                                 Tuổi của bạn
                             </div>
@@ -74,8 +124,7 @@
                                 Huyết áp cao (Hypertension)
                             </div>
                             <div class=" mb-2">
-                                <select id="so2" name="hypertension" class="form-control" required="required">
-                                    <option value="" disabled selected>Chọn tình trạng huyết áp</option>
+                                <select id="so2" name="hypertension" class="form-select" required="required">
                                     <option value="0">Không bị huyết áp cao</option>
                                     <option value="1">Có huyết áp cao</option>
                                 </select>
@@ -108,7 +157,15 @@
                                 <label for="so5" class="form-label">chỉ số về nồng độ glucose</label>
                               
                             </div>
-                            <a href="#resultID">
+                            <div class="form-check form-switch">
+                                <input type="checkbox" class="form-check-input" id="checkUseFile" name="useFile">
+                                <label class="form-check-label" for="checkUseFile">Sử dụng tệp CSV</label>
+                            </div>
+                            <div class="form-group mb-2">
+                                <label for="so6" class="form-label">Danh sách nhiều người muốn dự đoán</label>
+                                <input id="so6" type="file" name="file" placeholder=" " accept=".csv" class="form-control">
+                            </div>
+                            <a >
                                 <button class="btn  mt-4 mb-3" type="submit">Kiem tra</button>
                             </a>
                         </form>
